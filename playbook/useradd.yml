@@ -1,0 +1,13 @@
+---
+- name: apache web service
+  hosts: server1
+  become: true
+  become_method: sudo
+  become_user: root
+
+  tasks:
+  - name: useradd
+    user:
+     name: user01
+     uid: 5000
+     state: present

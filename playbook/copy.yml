@@ -1,0 +1,16 @@
+---
+- name: copy the files
+  hosts: 192.168.56.21
+  become: true
+  tasks:
+
+  - name: copy the sar files to dest server
+    copy:
+     src: /var/tmp/testfile
+     dest: /tmp/
+
+  - name: nftpd service status
+    yum:
+     name: ntpd
+     state: present
+     enabled: true

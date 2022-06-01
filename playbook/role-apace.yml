@@ -1,0 +1,10 @@
+---
+- name: apache web service
+  hosts: 192.168.56.21
+  become: true
+  become_method: sudo
+  become_user: root
+
+  roles:
+    - role: apache
+

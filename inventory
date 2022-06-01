@@ -1,0 +1,7 @@
+[oracle]
+server1	ansible_host=192.168.56.21
+server2 ansible_host=192.168.56.22
+server3 ansible_host=192.168.56.23
+server4 ansible_host=192.168.56.24
+server5 ansible_host=192.168.56.25
+

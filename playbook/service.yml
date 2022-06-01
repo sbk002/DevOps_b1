@@ -1,0 +1,19 @@
+---
+- name: Useradd
+  hosts: 192.168.56.21
+  become: true
+  tasks:
+  - name: web server install and configure
+    yum:
+     name: httpd
+     state: present
+
+  - name: NTP server install and configure
+    yum:
+     name: chronyd
+     state: present
+
+  - name: Postfix install and configure
+    yum:
+     name: postfix
+     state: present
