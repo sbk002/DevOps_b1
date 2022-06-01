@@ -1,0 +1,8 @@
+---
+- copy:
+   src: templates/index.j2
+   dest: "{{ rajpath }}"
+
+- name: restart the {{ pkg_name }}  service
+  command: service {{ pkg_name }} restart
+

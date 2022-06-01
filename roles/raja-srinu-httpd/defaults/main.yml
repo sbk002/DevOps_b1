@@ -1,0 +1,5 @@
+---
+# defaults file for raja-srinu-httpd
+source_file_path: /home/ansi001/apache_config_file/index.html
+rajpath: /var/www/html
+pkg_name: httpd

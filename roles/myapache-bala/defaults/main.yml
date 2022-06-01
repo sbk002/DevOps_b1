@@ -1,0 +1,4 @@
+---
+# defaults file for myapache-bala
+mygitpath: git@github.com:bertvv/ansible-role-httpd.git
+destination_path: /var/tmp/sbk/

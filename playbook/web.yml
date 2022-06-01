@@ -1,0 +1,23 @@
+---
+- name: apache web service
+  hosts: oracle
+  become: true
+  become_method: sudo
+  become_user: root
+
+  tasks:
+
+  - name: Install httpd rpm
+    dnf:
+     name: httpd
+     state: present
+     enabled: true
+
+  - name: COnfigure the httpd web page
+    copy:
+     src: /home/ansi001/apache_config_file/index.html
+     dest: /var/www/html
+
+  - name: Restart the httpd
+    command: systemctl restart httpd
+
