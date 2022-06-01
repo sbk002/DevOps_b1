@@ -1,0 +1,102 @@
+[ansi001@masterserver ~]$ ansible oracle --list-hosts
+  hosts (5):
+    server1
+    server2
+    server3
+    server4
+    server5
+[ansi001@masterserver ~]$
+
+[ansi001@masterserver ~]$ ansible-playbook playbook/useradd.yml -u root
+________________________________________________________________________
+
+
+- name: correct index.html is present
+  copy:
+   src: files/index.html
+   dest: /var/www/html/index.html
+______________________________________________________________________
+tasks:
+ - name: server.example.com in /etc/hosts
+   lineinfile:
+    path: /etc/hosts
+    line: '192.0.2.42 server.example.com server'
+    state: present
+_____________________________________________________________________
+
+- name: install the latest version of Apache
+  yum: name=httpd state=latest
+- name: remove the Apache package
+  yum: name=httpd state=absent
+_____________________________________________________________________
+ name: Non-idempotent approach with shell module
+ shell: echo "nameserver 192.0.2.1" > /etc/resolv.conf
+______________________________________________________________________
+- name: correct index.html is present
+  copy:
+   src: files/index.html
+   dest: /var/www/html/index.html
+
+- name: Non-idempotent approach with shell module
+  command: "sh <script>"
+____________________________________________________________
+
+- name: firewalld permits http service
+  firewalld:
+    service: http
+    permanent: true
+    state: enabled
+    immediate: yes
+____________________________________________________________
+- name: latest version of all required packages installed
+  yum:
+  name:
+   - firewalld
+   - httpd
+   - mariadb-server
+   - php
+   - php-mysql
+  state: latest
+_____________________________________________________________
+- name: test php page is installed
+  get_url:
+   url: "http://materials.example.com/grading/var/www/html/index.php"
+   dest: /var/www/html/index.php
+   mode: 0644
+____________________________________________________________
+
+Vars:
+- name: latest version of all required packages installed
+  yum:
+   name: "{{ item }}"
+   state: latest
+  with_items:
+   - httpd
+   - proxy
+   - scp
+   - vsfptd
+   - git
+_____________________________________________________________
+- name: Users exist and are in the correct groups 
+  user:
+   name: "{{ item }}"
+   state: present
+   groups: "{{ item }}"
+  with_items:
+   - { name: 'jane', groups: 'wheel' }
+   - { name: 'joe1', groups: 'root' }
+   - { name: 'joe2', groups: 'root' }
+   - { name: 'joe3', groups: 'root' }
+   - { name: 'joe4', groups: 'root' }
+
+______________________________________________________________
+
+____________________________________________________________
+
+
+
+
+
+
+
+
